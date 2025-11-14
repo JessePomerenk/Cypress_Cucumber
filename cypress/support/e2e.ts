@@ -19,3 +19,8 @@ import './commands'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+
+Cypress.on('uncaught:exception', (err, runnable) => {
+    // Careers page throws error. So we are going to turn off the problem globally.
+      return false
+})

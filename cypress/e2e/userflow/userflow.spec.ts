@@ -8,7 +8,7 @@ Given("User is on the home page", () =>{
 })
 
 When("They search for {string}", (item:string)  => {
-    homePage.inputSearch(item);
+    homePage.searchForItem(item);
 }
 
 )

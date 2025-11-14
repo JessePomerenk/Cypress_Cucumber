@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "lib": ["es6", "dom", "ES2021.String"],
+    "types": ["cypress", "node"],
+    "baseUrl": ".",
+    "esModuleInterop": true,
+    "module": "Node16",
+    "moduleResolution": "node16"
+  },
+  "include": ["**/*.ts"]
+}

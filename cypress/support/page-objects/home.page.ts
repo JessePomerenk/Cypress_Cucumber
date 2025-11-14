@@ -2,7 +2,7 @@ export class HomePage {
     private readonly searchBar = '[title="Search"]';
     private readonly link = (link) => `[href="${link}"]`
 
-    public inputSearch(searchParam:string){
+    public searchForItem(searchParam:string){
         cy.get(this.searchBar).clear().type(searchParam+"{enter}")
     }
     public visit(){

@@ -23,3 +23,16 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+
+Cypress.Commands.add(
+    'muiSelect',
+    { prevSubject: 'element' },
+    (subject, option: string) => {
+      const muiDropdownOptions = (option): string =>
+        `[role="listbox"] li:contains("${option}")`;
+      cy.wrap(subject).trigger('mousedown', { button: 0 }); // open dropdown menu
+      return cy.get(muiDropdownOptions(option)).first().click({ force: true });
+  },
+);
+
