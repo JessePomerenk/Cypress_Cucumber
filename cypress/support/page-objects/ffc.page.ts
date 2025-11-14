@@ -1,13 +1,17 @@
 export class FfcPage{
+    public const execListSelector = '.executive-list';
     private readonly url = 'https://foundationfinance.com/';
     private readonly desktopMenu = '[id="ast-desktop-header"] .main-navigation';
     private readonly menuItem =(menuLabel) => `${this.desktopMenu} .menu-item:contains("${menuLabel}")`;
+    protected readonly executiveSelector = '.executive';
     private readonly submenu= (menuLabel) => `${this.menuItem(menuLabel)} .sub-menu:nth(1)`;
     private readonly menuDropdownItem = (menuDropdownLabel) => `${this.desktopMenu} .menu-link:contains(${menuDropdownLabel})`;
-    private readonly careerSteps = '.js-timeline_item';
+    private readonly career_steps = '.js-timeline_item';
 
     public visit(){
         cy.visit(this.url)
+
+        return true;
     }
 
     public forceShowSubMenu(menuLabel){
@@ -37,5 +41,18 @@ export class FfcPage{
         cy.wait(2000)
         cy.get(this.careerSteps).should('have.length', 5)
     }
+
+    public validateExecNames(){
+        let names : string[] = ['Alex', 'Andrea', 'Ryan', 'Craig', 'Andrew', 'Ravi', 'Ravinder', 'Zack'];
+
+        cy.get(this.execListSelector).find('div').each(($el, index, $list) => {
+            executive = cy.get(`${this.execListSelector} > div > ${this.executiveSelector}(${index})`);
+
+            const isItAnExecutiveOrNot = names.includes(executive);
+            Expect(isItAnExecutiveOrNot).to.eq(true);
+        })
+    }
+
+
 
 }
